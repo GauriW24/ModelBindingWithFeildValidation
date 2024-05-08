@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeView";
+}
+
+@model ModelBindingWithFeildValidation.Models.EmployeeValidation
+<style>
+    * {
+        background-color: ghostwhite;
+    }
+
+    lable {
+        margin-right: 20px;
+    }
+</style>
+
+@* Form starts with BeginForm stmt.
+    @Html.ValidationSummary(true) - helper method, used to diplay all validations
+    error on page. Placing a validation summary at the top of your form makes it
+    easier for users to understand why a form submission failed.
+
+*@
+
+
+@using (Html.BeginForm("SubmitForm", "Home", FormMethod.Post, new { @class = "FormStyle" }))
+{
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        <label>Name:</label>
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @name = "Name" })
+        @Html.ValidationMessageFor(model => model.Name, "" , new {@class="text-danger"})
+    </div>
+    <div class="form-group">
+        <label>Email:</label>
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @name = "Email" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label>Phone Number:</label>
+        @Html.TextBoxFor(model => model.MobNo, new { @class = "form-control", @name = "MobNo" })
+        @Html.ValidationMessageFor(model => model.MobNo, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label>Designation:</label>
+        @Html.TextBoxFor(model => model.Designation, new { @class = "form-control", @name = "Designation" })
+        @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+    </div>
+
+    <button style="margin-top: 20px" type="submit" class="btn btn-primary">Submit</button>
+}
